@@ -1,53 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-R8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Event Registration</title>
+    <title>Campus Event Registration Politeknik Negeri Bali</title>
+    
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 20px; background: #f9f9f9; }
-        h1, h2 { color: #333; }
-        #event-list ul { list-style-type: none; padding: 0; }
-        #event-list li { background: #fff; margin: 8px 0; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        #register-form { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        #register-form div { margin-bottom: 12px; }
-        #register-form label { display: block; margin-bottom: 5px; font-weight: 600; }
-        #register-form input, #register-form select { width: 95%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
-        button { background: #007aff; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
-        button:hover { background: #0056b3; }
-        #message { margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 5px; }
-        .success { color: #28a745; background: #e9f7ec; }
-        .error { color: #dc3545; background: #fbebee; }
+        :root {
+            --primary-color: #0056b3; 
+            --light-gray: #f4f7f6;
+            --dark-gray: #4a4a4a;
+            --border-color: #ddd;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 24px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        h1, h2 {
+            color: #333;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
+
+        #event-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #event-list li {
+            background: #fff;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease;
+        }
+        #event-list li:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        #event-list strong {
+            font-size: 1.2em;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        #event-list em {
+            font-style: normal;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        #register-form {
+            display: grid;
+            gap: 16px; 
+        }
+        #register-form label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
+        #register-form input[type="text"],
+        #register-form input[type="email"],
+        #register-form select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        button[type="submit"] {
+            background: var(--primary-color);
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            width: 100%; 
+        }
+        button[type="submit"]:hover {
+            background: #004494; 
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .success { color: #28a745; background: #e9f7ec; border: 1px solid #b8e9c4; }
+        .error { color: #dc3545; background: #fbebee; border: 1px solid #f5c6cb; }
+
+
+        #participant-list-container {
+            margin-top: 30px;
+        }
+        #participant-list-container h3 {
+            color: #333;
+        }
+        #participant-list-container ul {
+            padding-left: 20px;
+            background: #f9f9f9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        #participant-list-container li {
+            padding: 5px 0;
+        }
     </style>
 </head>
 <body>
-    <h1>Campus Event Registration Platform</h1>
 
-    <h2>Available Events</h2>
-    <div id="event-list"><p>Loading events...</p></div>
+    <div class="container">
+        <h1>Campus Event Registration Platform</h1>
 
-    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <section id="event-section">
+            <h2>Available Events</h2>
+            <div id="event-list">
+                <p>Loading events...</p>
+            </div>
+        </section>
 
-    <h2>Register for an Event</h2>
-    <form id="register-form">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-            <label for="event-select">Event:</label>
-            <select id="event-select" name="event_id" required>
-                <option value="">-- Please select an event --</option>
-            </select>
-        </div>
-        <button type="submit">Register</button>
-    </form>
-
-    <div id="message"></div>
+        <section id="registration-section">
+            <h2>Register for an Event</h2>
+            <form id="register-form">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="event-select">Event:</label>
+                    <select id="event-select" name="event_id" required>
+                        <option value="">-- Please select an event --</option>
+                    </select>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            
+            <div id="message"></div>
+        </section>
+        
+        <section id="participant-list-container">
+            </section>
+    </div>
 
     <script>
         const API_URL = 'http://127.0.0.1:8000';
@@ -55,14 +186,16 @@
         const eventSelect = document.getElementById('event-select');
         const registerForm = document.getElementById('register-form');
         const messageDiv = document.getElementById('message');
+        
+        const participantListContainer = document.getElementById('participant-list-container');
 
         async function fetchEvents() {
             try {
                 const response = await fetch(`${API_URL}/events`);
                 if (!response.ok) throw new Error('Failed to fetch events');
-
+                
                 const events = await response.json();
-
+                
                 eventListDiv.innerHTML = '<ul></ul>';
                 eventSelect.innerHTML = '<option value="">-- Please select an event --</option>';
 
@@ -74,12 +207,11 @@
                 events.forEach(event => {
                     const li = document.createElement('li');
                     li.innerHTML = `
-                        <strong>${event.title}</strong> (${event.date})
-                        <br>
+                        <strong>${event.title} (${event.date})</strong>
                         <em>Location: ${event.location}, Quota: ${event.quota}</em>
                     `;
                     eventListDiv.querySelector('ul').appendChild(li);
-
+                    
                     const option = document.createElement('option');
                     option.value = event.id;
                     option.textContent = `${event.title} (${event.date})`;
@@ -88,14 +220,14 @@
 
             } catch (error) {
                 console.error('Error fetching events:', error);
-                eventListDiv.innerHTML = '<p class="error">Error loading events. Is the backend server running?</p>';
+                eventListDiv.innerHTML = `<p class="error">Error loading events. Is the backend server running?</p>`;
             }
         }
 
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault(); 
             messageDiv.innerHTML = '';
-
+            
             const data = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
@@ -119,6 +251,9 @@
                 if (response.status === 201) { 
                     showMessage(`Successfully registered ${result.name}!`, 'success');
                     registerForm.reset();
+                    
+                    
+                    await fetchParticipants(result.event_id);
                 } else {
                     throw new Error(result.detail || 'Registration failed');
                 }
@@ -127,6 +262,51 @@
                 console.error('Error registering:', error);
                 showMessage(error.message, 'error');
             }
+        });
+        
+       
+        async function fetchParticipants(eventId) {
+            if (!eventId) {
+                participantListContainer.innerHTML = ''; 
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/events/${eventId}/participants`);
+                if (!response.ok) {
+                    
+                    if(response.status === 404) {
+                         participantListContainer.innerHTML = '';
+                         return;
+                    }
+                    throw new Error('Failed to fetch participants');
+                }
+                
+                const participants = await response.json(); 
+
+                let html = `<h3>Registered Participants (${participants.length})</h3>`;
+
+                if (participants.length === 0) {
+                    html += '<p>No participants registered yet. Be the first!</p>';
+                } else {
+                    html += '<ul>';
+                    participants.forEach(participant => {
+                        html += `<li>${participant.name}</li>`;
+                    });
+                    html += '</ul>';
+                }
+                
+                participantListContainer.innerHTML = html;
+
+            } catch (error) {
+                console.error('Error fetching participants:', error);
+                participantListContainer.innerHTML = `<p class"error">Could not load participant list.</p>`;
+            }
+        }
+        
+        eventSelect.addEventListener('change', (e) => {
+            const selectedEventId = e.target.value;
+            fetchParticipants(selectedEventId);
         });
 
         function showMessage(msg, type) {

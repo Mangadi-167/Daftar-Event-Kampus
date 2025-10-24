@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from datetime import date
+from typing import List
 
 class ParticipantBase(BaseModel):
     name: str
@@ -11,7 +12,15 @@ class ParticipantCreate(ParticipantBase):
 class Participant(ParticipantBase):
     id: int
     event_id: int
-    class Config: orm_mode = True
+    
+    class Config:
+        from_attributes = True
+
+class ParticipantPublic(BaseModel):
+    name: str
+    
+    class Config:
+        from_attributes = True
 
 class EventBase(BaseModel):
     title: str
@@ -24,4 +33,6 @@ class EventCreate(EventBase):
 
 class Event(EventBase):
     id: int
-    class Config: orm_mode = True
+
+    class Config:
+        from_attributes = True

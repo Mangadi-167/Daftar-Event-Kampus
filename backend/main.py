@@ -1,13 +1,50 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from typing import List
+from datetime import date
 
 from . import models, schemas, database, security
-from .database import engine, get_db
+from .database import engine, get_db, SessionLocal
 
 models.Base.metadata.create_all(bind=engine)
 
+def init_db():
+    db = SessionLocal() 
+    try:
+        first_event = db.query(models.Event).first()
+        if first_event is None:
+            print("DATABASE KOSONG: Menambahkan data event default PNB...")
+            
+            event1 = models.Event(
+                title="Lomba Web Design TRPL PNB 2025",
+                date=date(2025, 11, 15),
+                location="Gedung JTI Politeknik Negeri Bali",
+                quota=50
+            )
+            event2 = models.Event(
+                title="Kompetisi Capture The Flag (CTF) HMTI",
+                date=date(2025, 11, 22),
+                location="Aula Direktorat PNB",
+                quota=100
+            )
+            event3 = models.Event(
+                title="Guest Lecture: Cybersecurity Trends 2026",
+                date=date(2025, 12, 1),
+                location="Online via Zoom",
+                quota=300
+            )
+            
+            db.add_all([event1, event2, event3])
+            db.commit()
+            print("Data event default PNB berhasil ditambahkan.")
+        else:
+            print("Database sudah terisi.")
+    finally:
+        db.close() 
+
+init_db()
 
 app = FastAPI(
     title="Campus Event Registration Platform API",
@@ -23,17 +60,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Dependencies
 db_dependency = Depends(get_db)
 admin_dependency = Depends(security.get_api_key)
 
-@app.get("/")
+@app.get("/", response_class=FileResponse)
 def read_root():
-    return {"message": "API Registrasi Event Kampus. Buka /docs untuk dokumentasi."}
+    return FileResponse('index.html')
 
 @app.get("/events", response_model=List[schemas.Event], tags=["Events"])
 def get_all_events(db: Session = db_dependency):
     return db.query(models.Event).all()
+
+@app.get("/events/{event_id}/participants", response_model=List[schemas.ParticipantPublic], tags=["Events"])
+def get_event_participants(event_id: int, db: Session = db_dependency):
+    event = db.query(models.Event).filter(models.Event.id == event_id).first()
+    if not event:
+        raise HTTPException(status_code=404, detail="Event not found")
+        
+    participants = db.query(models.Participant).filter(models.Participant.event_id == event_id).all()
+    return participants
 
 @app.post("/events", response_model=schemas.Event, status_code=status.HTTP_201_CREATED, tags=["Admin (Events)"])
 def create_event(event: schemas.EventCreate, db: Session = db_dependency, api_key: str = admin_dependency):
