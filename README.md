@@ -1,4 +1,4 @@
-# Proyek UTS Interoperability: Campus Event Registration Platform
+# Proyek UTS Interoperability: Campus Event Registration Platform Politeknik Negeri Bali
 
 Proyek ini adalah implementasi sistem registrasi event kampus untuk Ujian Tengah Semester (UTS) mata kuliah Interoperability.
 
@@ -83,8 +83,8 @@ Berikut adalah langkah-langkah lengkap untuk menjalankan proyek ini, dirancang a
 
 ### Catatan untuk Penguji (Dosen)
 
-* **Aplikasi Frontend** (`index.html`) sudah **disajikan secara otomatis** oleh server FastAPI di alamat `http://127.0.0.1:8000`. Anda tidak perlu membuka file `index.html` secara manual.
-* **Database Terisi Otomatis:** Saat server dijalankan pertama kali, file `campus_events.db` akan dibuat. Kode di `backend/main.py` akan **otomatis mengisi 3 data event default** (Lomba TRPL, CTF, dll.) ke dalam database. Anda bisa langsung menguji aplikasi tanpa perlu input data manual.
+* **Aplikasi Frontend** (`index.html`) sudah **disajikan secara otomatis** oleh server FastAPI di alamat `http://127.0.0.1:8000`
+* **Database Terisi Otomatis:** Saat server dijalankan pertama kali, file `campus_events.db` akan dibuat. Kode di `backend/main.py` akan **otomatis mengisi data event default** (Lomba TRPL, CTF, dll.) ke dalam database.
 * **Dokumentasi API** (Swagger UI) tersedia di `http://127.0.0.1:8000/docs` untuk pengujian *endpoint* secara terpisah.
 
 ---
@@ -113,7 +113,7 @@ Dokumentasi interaktif lengkap tersedia di **[http://127.0.0.1:8000/docs](http:/
 *(PENTING: Ganti bagian ini dengan screenshot Anda sendiri)*
 
 **1. Screenshot Frontend (Tampilan Utama)**
-*(Screenshot `http://127.0.0.1:8000` menampilkan desain baru dan daftar event default)*
+C:\EventKampus\screenshots\tampilan1.png
 
 **2. Screenshot Fitur (Daftar Peserta)**
 *(Screenshot saat salah satu event di-klik pada *dropdown* dan daftar nama peserta muncul di bawahnya)*
