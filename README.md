@@ -43,7 +43,7 @@ Berikut adalah langkah-langkah lengkap untuk menjalankan proyek ini, dirancang a
 1.  **Clone Repository:**
     Buka terminal dan jalankan perintah berikut untuk mengunduh proyek:
     ```bash
-    git clone [https://github.com/Mangadi-167/Daftar-Event-Kampus.git](https://github.com/Mangadi-167/Daftar-Event-Kampus.git)
+    git clone [https://github.com/Mangadi-167/Daftar-Event-Kampus.git](https://github.com/Mangadi-167/interoperability-final-I-Komang-Adi-Wirata.git)
     cd Daftar-Event-Kampus
     ```
 
