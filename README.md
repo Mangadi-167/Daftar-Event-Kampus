@@ -110,7 +110,6 @@ Dokumentasi interaktif lengkap tersedia di **[http://127.0.0.1:8000/docs](http:/
 
 ## Screenshot Hasil Uji
 
-*(PENTING: Ganti bagian ini dengan screenshot Anda sendiri)*
 
 **1. Screenshot Frontend (Tampilan Utama)**
 ![Tampilan Frontend Awal](screenshots/Tampilan1.png)
