@@ -116,7 +116,7 @@ Dokumentasi interaktif lengkap tersedia di **[http://127.0.0.1:8000/docs](http:/
 ![Tampilan Frontend Awal](screenshots/Tampilan1.png)
 
 **2. Screenshot Fitur (Daftar Peserta)**
-![Tampilan Form](screenshots/Tampilan2.png)
+![Tampilan Form](screenshots/TampilanAdd.png)
 
 **3. Screenshot Backend (Swagger UI di `/docs`)**
 ![Tampilan Docs](screenshots/docs.png)
