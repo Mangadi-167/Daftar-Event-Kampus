@@ -44,7 +44,7 @@ Berikut adalah langkah-langkah lengkap untuk menjalankan proyek ini, dirancang a
     Buka terminal dan jalankan perintah berikut untuk mengunduh proyek:
     ```bash
     git clone (https://github.com/Mangadi-167/interoperability-final-I-Komang-Adi-Wirata.git)
-    cd Daftar-Event-Kampus
+    cd interoperability-final-I-Komang-Adi-Wirata
     ```
 
 2.  **Buat & Aktifkan Virtual Environment:**
