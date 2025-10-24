@@ -113,10 +113,10 @@ Dokumentasi interaktif lengkap tersedia di **[http://127.0.0.1:8000/docs](http:/
 *(PENTING: Ganti bagian ini dengan screenshot Anda sendiri)*
 
 **1. Screenshot Frontend (Tampilan Utama)**
-![Tampilan Frontend Awal](screenshots/tampilan1.png)
+![Tampilan Frontend Awal](screenshots/Tampilan1.png)
 
 **2. Screenshot Fitur (Daftar Peserta)**
-*(Screenshot saat salah satu event di-klik pada *dropdown* dan daftar nama peserta muncul di bawahnya)*
+![Tampilan Form](screenshots/Tampilan2.png)
 
 **3. Screenshot Backend (Swagger UI di `/docs`)**
-*(Screenshot halaman Swagger UI yang menunjukkan semua *endpoint* yang tersedia)*
+![Tampilan Docs](screenshots/docs.png)
